@@ -46,7 +46,8 @@ engine:
     - punct_translator
   filters:
     - uniquifier
-    - lua_filter@*easy_en*enhance_filter
+    - lua_filter@*en_spacer       #如果前面是非空单词,则输入后自动在当前当前单词前增加空格
+    # - lua_filter@*easy_en*enhance_filter
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
