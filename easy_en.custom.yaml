@@ -5,7 +5,10 @@ patch:
     reset: 1 #初始状态,0关1开
     states: [ Off, 辞典ON ]  #侯选栏显示内容,可省略,可更改
 
-  "engine/filters/@next": simplifier@en_dict
+  engine/filters: 
+    - uniquifier
+    - lua_filter@*en_spacer
+    - simplifier@en_dict
 
   en_dict:
     opencc_config: en.dict.json
@@ -21,6 +24,7 @@ patch:
   menu:
     alternative_select_keys: 1234567890
     page_size: 10                              # 可更改，最多10個
+
   style/+:
     font_point: 14
     comment_font_point: 11
