@@ -1,0 +1,33 @@
+patch:
+  #加载en_dict
+  switches/@next: 
+    name: en_dict
+    reset: 1 #初始状态,0关1开
+    states: [ Off, 辞典ON ]  #侯选栏显示内容,可省略,可更改
+
+  "engine/filters/@next": simplifier@en_dict
+
+  en_dict:
+    opencc_config: en.dict.json
+    option_name: en_dict
+    show_in_comment: true #开启编码滤镜
+    comment_format:  #编码滤镜正则处理
+      - "xform/<br>/\n/" #编码滤镜内容换行
+      - "xform/&nbsp/ /" #编码滤镜内容显示空格
+#   上述带#号为编码滤镜模式, 普通滤镜直接在行首用#号屏蔽,编码滤镜 
+    tags:
+      - abc
+    tips: all #none无注释,char单字注释,all全部注释
+  menu:
+    alternative_select_keys: 1234567890
+    page_size: 10                              # 可更改，最多10個
+  style/+:
+    font_point: 14
+    comment_font_point: 11
+    label_font_point: 11
+    horizontal: false
+    inline_preedit: false 
+    label_font_point: 15 
+    label_format: "%s"   
+    layout: {align_type: center, spacing: 2, line_spacing: 0, candidate_spacing: 5} 
+ 
