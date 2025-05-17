@@ -33,7 +33,7 @@
 
 以下是原rime-easy-en说明。
 
-+++
+---
 
 # rime-easy-en
 
