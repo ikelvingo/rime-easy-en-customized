@@ -1,15 +1,33 @@
+# Rime Easy English Plus schema (Patch)
+# 
+# encoding: utf-8
+# author: ikelvingo <im.kelvinwong@gmail.com>
+# update: 2015-05-17
 patch:
+  schema/name: EasyEng+
   #加载en_dict
   switches/@next: 
     name: en_dict
     reset: 1 #初始状态,0关1开
     states: [ Off, 辞典ON ]  #侯选栏显示内容,可省略,可更改
 
-  engine/filters: 
+  engine/filters:
     - uniquifier
-    - lua_filter@*en_spacer
-    - simplifier@en_dict
+    - lua_filter@*en_spacer                   # 输入后，如前方为英文字幕，则自动在当前单词前方插入空格
+    - simplifier@en_dict                      # 引入提示辞典
+    # - lua_filter@*en_split 
 
+  translator:                                 # 以下爲本輸入法方案配置
+    dictionary: easy_en
+    enable_sentence: false                    # 由于为采用引入分词，因此此处必须设置为false
+    enable_encoder: false
+    enable_user_dict: false
+    enable_completion: true
+    # spelling_hints: 9
+    # comment_format:
+    #   - xform/^.+$//
+
+  # 通过opencc引入英汉辞典
   en_dict:
     opencc_config: en.dict.json
     option_name: en_dict
@@ -17,7 +35,7 @@ patch:
     comment_format:  #编码滤镜正则处理
       - "xform/<br>/\n/" #编码滤镜内容换行
       - "xform/&nbsp/ /" #编码滤镜内容显示空格
-#   上述带#号为编码滤镜模式, 普通滤镜直接在行首用#号屏蔽,编码滤镜 
+  # 上述带#号为编码滤镜模式, 普通滤镜直接在行首用#号屏蔽,编码滤镜 
     tags:
       - abc
     tips: all #none无注释,char单字注释,all全部注释

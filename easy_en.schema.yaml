@@ -4,7 +4,7 @@
 
 schema:
   schema_id: easy_en
-  name: EasyEng+
+  name: Easy English
   version: "0.10.1"
   author:
     - Patrick <ipatrickmac@gmail.com>
