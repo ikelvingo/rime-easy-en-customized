@@ -1,4 +1,44 @@
+# rime-easy-en-Customized by ikelvingo
+
+## 为什么要做easy-en定制
+
+- 本人经常有大量英文输入需要，之前一直用[哈雷路亚](https://github.com/dongyuwei/hallelujahIM?tab=readme-ov-file)输入法，可以实现输入查词一体。近期开始使用小狼毫+[万向拼音输入方案](https://github.com/amzxyz/rime_wanxiang_pro?tab=readme-ov-file)作为主力输入工具，也希望可以在rime下实现哈雷路亚的体验
+- 常见的rime中文输入整合方案中，通常将rime_melt作为实现中英混输的解决方案，但如果将其作为英文主力输入工具，还是存在词库偏小和无法完全满足个人的输入体验需求
+- 没有找到还在正常维护中的rime英文输入解决方案，[sdadonkey/reme-english](https://github.com/sdadonkey/rime-english)的解决方案是我找到最符合需求，但作者也弃坑很久了，不过依然非常感谢作者提供的灵感以及附赠的单词制作excel文件
+- 感谢[Rime](https://github.com/rime/home)的进步和[OpenCC](https://github.com/BYVoid/OpenCC/)的出世，让现在实现sdadonkey类似的方案更加简单
+- 本方案基于[BlindingDark的easy english](https://github.com/BlindingDark/rime-easy-en)输入方案进行了定制，使用rime打patch的方案，对原始方案几乎不进行任何修改，无任何耦合
+
+> [!NOTE]
+>
+> - 本方案不支持英文长句输入，已经关闭了自动断句功能。不过以我自己的体验，英文长句输入怕是很少有人用吧。
+>
+> - 本方案的英文输入单词追加空格功能，未使用原easy-en的方案，原方案为每个单词输入完成上屏后自动在单词结尾追加，目前采用[@Mirtle的en_spacer](https://gist.mirtle.cn/librime-lua/en_spacer.lua)方案，输入上屏后，如果前面是英文则自动在当前输入单词前添加空格
+>
+> - 由于本人始终无法解决wordninja-rs在windows平台的部署运行，因此只能在配置中，屏蔽了easy_en的lua脚本，如是linux平台用户，可以在easy_en.custom.yaml中 将engine/filters字段修改为：
+>
+> 	``` yaml
+> 	engine/filters/+:
+> 	    - lua_filter@*en_spacer       # 输入后，如前方为英文字幕，则自动在当前单词前方插入空格
+> 	    - simplifier@en_dict          # 引入提示辞典
+> 	```
+
+## easy-en-Customized的安装
+
+- 如果已经安装了easy-en，只需将lua、opencc、ico目录和easy_en.custom.yaml、easy_en.dict.yaml文件复制到你的rime用户目录即可
+- 如果尚未安装easy-en，只需要将本项目clone下载，并解压到rime的用户目录即可
+
+> [!TIP]
+>
+> - opencc目录中的excel是用于维护和定制词库的，可能在导出和制作词库、辞典文件时，需要一点点的excel技巧
+
+以下是原rime-easy-en说明。
+
++++
+
 # rime-easy-en
+
+---
+
 Rime / Easy English 可混输的英文输入法
 
 ## 安装
