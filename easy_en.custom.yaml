@@ -5,16 +5,18 @@
 # update: 2015-05-17
 patch:
   schema/name: EasyEng+
+  schema/icon: "ico/eng_w.ico"
+  schema/ascii_icon: "ico/keyboard_w.ico"
   #加载en_dict
   switches/@next: 
     name: en_dict
     reset: 1 #初始状态,0关1开
     states: [ Off, 辞典ON ]  #侯选栏显示内容,可省略,可更改
 
-  engine/filters:
-    - uniquifier
-    - lua_filter@*en_spacer                   # 输入后，如前方为英文字幕，则自动在当前单词前方插入空格
-    - simplifier@en_dict                      # 引入提示辞典
+  engine/filters/@next: simplifier@en_dict 
+    # - uniquifier
+    # - lua_filter@*en_spacer                   # 输入后，如前方为英文字幕，则自动在当前单词前方插入空格
+    # - simplifier@en_dict                      # 引入提示辞典
     # - lua_filter@*en_split 
 
   translator:                                 # 以下爲本輸入法方案配置
@@ -23,9 +25,10 @@ patch:
     enable_encoder: false
     enable_user_dict: false
     enable_completion: true
+    used_punct: "-.'"
     # spelling_hints: 9
-    # comment_format:
-    #   - xform/^.+$//
+    comment_format:
+      - xform/^.+$//
 
   # 通过opencc引入英汉辞典
   en_dict:
@@ -33,12 +36,13 @@ patch:
     option_name: en_dict
     show_in_comment: true #开启编码滤镜
     comment_format:  #编码滤镜正则处理
-      - "xform/<br>/\n/" #编码滤镜内容换行
+      # - "xform/<br>/\n/" #编码滤镜内容换行
       - "xform/&nbsp/ /" #编码滤镜内容显示空格
   # 上述带#号为编码滤镜模式, 普通滤镜直接在行首用#号屏蔽,编码滤镜 
     tags:
       - abc
     tips: all #none无注释,char单字注释,all全部注释
+    
   menu:
     alternative_select_keys: 1234567890
     page_size: 10                              # 可更改，最多10個
