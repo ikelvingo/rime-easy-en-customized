@@ -12,7 +12,9 @@
 >
 > - 本方案不支持英文长句输入，已经关闭了自动断句功能。不过以我自己的体验，英文长句输入怕是很少有人用吧。
 >
-> - 本方案的英文输入单词追加空格功能，未使用原easy-en的方案，原方案为每个单词输入完成上屏后自动在单词结尾追加，目前采用[@Mirtle的en_spacer](https://gist.mirtle.cn/librime-lua/en_spacer.lua)方案，输入上屏后，如果前面是英文则自动在当前输入单词前添加空格
+> - ~~本方案的英文输入单词追加空格功能，未使用原easy-en的方案，原方案为每个单词输入完成上屏后自动在单词结尾追加，目前采用[@Mirtle的en_spacer](https://gist.mirtle.cn/librime-lua/en_spacer.lua)方案，输入上屏后，如果前面是英文则自动在当前输入单词前添加空格~~
+>
+> 	*经过反复测试，en_spacer在非连续输入场景下，比较容易发生插入空格失败的情况，因此屏蔽该脚本，恢复原脚本，待继续寻找合适的自动空格lua。*
 >
 > - 由于本人始终无法解决wordninja-rs在windows平台的部署运行，因此只能在配置中，屏蔽了easy_en的lua脚本，如是linux平台用户，可以在easy_en.custom.yaml中 将engine/filters字段修改为：
 >
